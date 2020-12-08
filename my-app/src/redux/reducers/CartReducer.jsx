@@ -11,5 +11,19 @@ const stateGioHang = {
 };
 
 export const CartReducer = (state = stateGioHang, action) => {
+  console.log("reducer", action);
+  switch(action.type){
+    case 'ADD_TO_CART': {
+      let gioHangCapNhat  = [...state.gioHang];
+      let index = gioHangCapNhat.findIndex(item => item.maSP === action.nhanspGioHang.maSP);
+      if(index!==-1){
+        gioHangCapNhat[index].soLuong +=1
+      }else {
+        gioHangCapNhat.push(action.nhanspGioHang)
+      }
+      state.gioHang = gioHangCapNhat;
+      return {...state};
+    }
+  }
   return {...state}
 };
