@@ -13,6 +13,7 @@ class ModalGioHangReduce extends Component {
                     <td>{item.giaBan}</td>
                     <td>{item.soLuong}</td>
                     <td>{(item.soLuong*item.giaBan).toLocaleString()}</td>
+                    <td><button className="btn btn-danger" onClick={()=> this.props.DeleteCartFunc(index)}>Xóa</button></td>
                 </tr>
             )
         })
@@ -47,4 +48,15 @@ const mapStateToProps = (state) => {// chuyen state tren store thanh this.props.
         gioHang: state.CartReducer.gioHang
     }
 }
-export default connect(mapStateToProps,null)(ModalGioHangReduce)
+const mapDispatchToProps = (dispatch) => {
+    return  {
+        DeleteCartFunc: (index) => {
+            const action= {
+                type: 'XOA_GIO_HANG',
+                index
+            }
+            dispatch(action);
+        }
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(ModalGioHangReduce)
