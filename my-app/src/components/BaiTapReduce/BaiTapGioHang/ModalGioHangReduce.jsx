@@ -14,6 +14,7 @@ class ModalGioHangReduce extends Component {
                     <td>{item.soLuong}</td>
                     <td>{(item.soLuong*item.giaBan).toLocaleString()}</td>
                     <td><button className="btn btn-danger" onClick={()=> this.props.DeleteCartFunc(index)}>Xóa</button></td>
+                    <td><button className="btn btn-danger" onClick={()=> this.props.DeleteCodeFunc(item.maSP)}>Xóa = Mã</button></td>
                 </tr>
             )
         })
@@ -56,6 +57,13 @@ const mapDispatchToProps = (dispatch) => {
                 index
             }
             dispatch(action);
+        },
+        DeleteCodeFunc: (maSP) => {
+            const action={
+                type: "XOA_GIO_HANG_SP",
+                maSP
+            }
+            dispatch(action)
         }
     }
 }

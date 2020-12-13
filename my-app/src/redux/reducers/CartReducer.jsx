@@ -13,6 +13,17 @@ const stateGioHang = {
 export const CartReducer = (state = stateGioHang, action) => {
   console.log("reducer", action);
   switch(action.type){
+    case 'XOA_GIO_HANG_SP': {
+      let gioHangCapNhat = [...state.gioHang];
+      let index = gioHangCapNhat.findIndex(item => item.maSP === action.maSP);
+      if(index!==-1) {
+        gioHangCapNhat.splice(index,1);
+      }
+     
+      // render lai giao dien
+      state.gioHang = gioHangCapNhat;
+      return {...state}
+    }
     case 'XOA_GIO_HANG': {
       let gioHangCapNhat = [...state.gioHang];
       gioHangCapNhat.splice(action.index,1);
